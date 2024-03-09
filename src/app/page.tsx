@@ -1,9 +1,9 @@
-import Title from "./components/organisms/Title/title";
+import Main from "./components/templates/main";
 
 export default function Home() {
   return (
     <>
-      <Title />
+      <Main />
     </>
   );
 }

@@ -1,0 +1,19 @@
+.pref-box {
+  margin: 0 60px;
+}
+
+.pref-box h2 {
+  padding-bottom: 10px;
+}
+
+.pref-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.pref-item {
+  margin: 0 15px 10px 0;
+
+}
