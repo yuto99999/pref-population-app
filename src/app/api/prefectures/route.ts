@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 interface Prefecture {
   prefCode: number;
   prefName: string;
+  isSelected: boolean
 }
 
 const apiUrl = 'https://opendata.resas-portal.go.jp/api/v1/prefectures';
