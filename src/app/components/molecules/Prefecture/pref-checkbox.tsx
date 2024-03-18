@@ -1,23 +1,30 @@
-"use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./pref-checkbox.css";
+import Graph from "../../organisms/Graph/graph";
 
 interface Prefecture {
   prefCode: number;
   prefName: string;
+  isSelected: boolean;
 }
 
-export default function PrefCheckbox() {
-  const [prefectures, setPrefectures] = useState<Prefecture[]>([]);
+export default function PrefCheckbox({
+  prefectures,
+  setPrefectures,
+}: {
+  prefectures: Array<Prefecture>;
+  setPrefectures: any;
+}) {
   const [isSelected, setIsSelected] = useState<number[]>([]);
 
-  useEffect(() => {
-    fetch("/api/prefectures")
-      .then((res) => res.json())
-      .then((data) => setPrefectures(data));
-  }, []);
-
   const handleCheckSelect = (prefCode: number) => {
+    setPrefectures((prevPrefectures: any[]) =>
+      prevPrefectures.map((prefecture) =>
+        prefecture.prefCode === prefCode
+          ? { ...prefecture, isSelected: !prefecture.isSelected }
+          : prefecture
+      )
+    );
     setIsSelected((prevSelectedPrefectures) =>
       prevSelectedPrefectures.includes(prefCode)
         ? prevSelectedPrefectures.filter((code) => code !== prefCode)
@@ -41,6 +48,8 @@ export default function PrefCheckbox() {
           </li>
         ))}
       </ul>
+      <p>選択された都道府県コード: {isSelected.join(", ")}</p>
+      <Graph isSelected={isSelected} prefectures={prefectures} />
     </div>
   );
 }
